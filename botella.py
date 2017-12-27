@@ -6,7 +6,6 @@ from pprint import pprint
 
 import threading
 import schedule
-import pickle
 import time
 import json
 import os
@@ -18,26 +17,13 @@ SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 slack_client = SlackClient(SLACK_BOT_TOKEN)
 questions = dict()
 
-try:
-    with open('counter.json', 'r') as fp:
-        counter= json.load(fp)
-except:
-    assert False
+users = [user["id"] for user in slack_client.api_call("users.list")["members"]]
 
-users = ['U7EEV8AMQ','U7M9NEVD2']#[user["id"] for user in slack_client.api_call("im.list")["ims"]]
-
-#questions = [
-#    {"text": '¿Cómo traducirías "tinta" al inglés?',
-#     "options": ["ink", "blotter", "ink pad", "stamp"],
-#     "answer": [0, '"Tinta" se traduce como "ink"']}
-#]
-#for index, question in enumerate(questions):
-
-def ask(question, answer=False):
+def ask(question, answer=None):
     data = {
         "fallback": "Pregunta",
         "attachment_type": "default",
-        "callback_id": question["id"],
+        "callback_id": question["index"],
         "color": "warning",
         "fields": [{
             "title": question["text"],
@@ -63,7 +49,7 @@ def ask(question, answer=False):
         for index, option in enumerate(question["options"])
     ]
 
-    if answer is not False:
+    if answer is not None:
         right = answer == question["answer"][0]
         for index, _ in enumerate(data["actions"]):
             data["actions"][index]["style"] = "primary" if index == question["answer"][0] else "danger"
@@ -92,7 +78,6 @@ def message_actions():
     if data["user"]["id"] in [user[0] for user in questions[id]["users"]]:
         return make_response("", 200)
 
-    print(answer)
     response = slack_client.api_call(
       "chat.update",
       channel=data["channel"]["id"],
@@ -120,28 +105,35 @@ def job():
     except:
             assert False
 
-    for user in users:
-        print(user)
-        slack_client.api_call(
-            "chat.postMessage",
-            channel=user,
-            text="",
-            attachments=ask(questions[counter[0]]),
-            as_user=True
-        )
+    try:
+        with open('counter.json', 'r') as fp:
+            counter = json.load(fp)[0]
+            print("Counter:", counter)
+    except:
+            assert False
 
-    if counter[0] < len(questions) - 1:
+
+    try:
+        for user in users:
+            slack_client.api_call(
+                "chat.postMessage",
+                channel=user,
+                text="",
+                attachments=ask(questions[counter]),
+                as_user=True
+            )
+        counter += 1
         try:
-            counter[0] += 1
             with open('counter.json', 'w') as fp:
-                json.dump(counter, fp)
+                json.dump([counter], fp)
         except:
             assert False
+    except: print("Error: no more questions")
+
     return
 
-threading.Timer(60, schedule.run_pending).start()
-schedule.every().day.at("21:16").do(job)
-#job()
+schedule.every().day.at("8:00").do(job)
+schedule.run_continuously()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5050)
