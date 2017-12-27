@@ -4,7 +4,6 @@ from flask import Flask, request, make_response, Response
 from slackclient import SlackClient
 from pprint import pprint
 
-import randomcolor
 import json
 import os
 
@@ -12,7 +11,6 @@ import os
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 
-color = randomcolor.RandomColor()
 slack_client = SlackClient(SLACK_BOT_TOKEN)
 app = Flask(__name__)
 options = dict() 
@@ -23,17 +21,13 @@ questions = [
      "answer": [2, "si fuera 2 más 2, sería 4, pero *y* concatena"]}
 ]
 
-def ask(id, text=None, hide=False):
-    data = {
-        "fallback": "Pregunta",
+def attachment(id, text):
+  return [{
+        "fallback": "Tu versión de Slack es demasiado vieja. ¿Qué tal si la actualizas?",
         "attachment_type": "default",
-        "text":  text or questions[id]["text"],
-        "color": questions[id]["color"],
-        "callback_id": str(id)
-    }
-
-    if not hide:
-        data["actions"] = [
+        "callback_id": str(id),
+        "text":  text,
+        "actions": [
             {
                 "name": "list",
                 "text": "Selecionar...",
@@ -41,20 +35,21 @@ def ask(id, text=None, hide=False):
                 "data_source": "external"
             }
         ]
-    return [data]
+    }
+    ]
 
 for index, question in enumerate(questions):
     options[str(index)] = {"options": [
         {"text": option, "value": str(index)}
         for index, option in enumerate(question["options"])
     ]}
-    questions[index]["color"] = color.generate()[0]
+
     slack_client.api_call(
       "chat.postMessage",
       channel="U7EEV8AMQ",
       #channel="C8KJBFGR0",
       text="",
-      attachments=ask(index, text="Pregunta: " + questions[index]["text"]),
+      attachments=attachment(index, question["text"]),
       as_user=True
     )
 
@@ -76,13 +71,19 @@ def message_actions():
     selection = int(data["actions"][0]["selected_options"][0]["value"])
     id = int(data["callback_id"])
 
+    message_text = "*Pregunta:* " + questions[id]["text"] + "\n" + "*Tu respuesta:* " + questions[id]["options"][selection] + "\n"
+    if selection == questions[id]["answer"][0]:
+        message_text += "*¡Correcto!* "
+    else:
+        message_text += "*¡Incorrecto!* "
+#    message_text+=questions[id]["answer"][1] + "\n----------"
+
     response = slack_client.api_call(
-      "chat.postMessage",
+      "chat.update",
       channel=data["channel"]["id"],
       ts=data["message_ts"],
-      text="",
-      attachments=ask(id, hide=True, text="Pregunta: " + questions[id]["text"] + "\n" + "Tu respuesta: " + questions[id]["options"][selection] + "\nSolución: " + "¡correcto! " if selection == questions[id]["answer"][0] else "¡incorrecto! " + questions[id]["answer"][1]),
-      replace_original=True
+      text=message_text,
+      attachments=[]# question(id, questions[id]["text"])
     )
 
     return make_response("", 200)
