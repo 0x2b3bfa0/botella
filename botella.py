@@ -8,6 +8,7 @@ import threading
 import schedule
 import time
 import json
+import re
 import os
 
 
@@ -16,8 +17,43 @@ SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 slack_client = SlackClient(SLACK_BOT_TOKEN)
 questions = dict()
+messages = []
 
 users = [user["id"] for user in slack_client.api_call("users.list")["members"]]
+
+denada=re.compile('.*(d+[^a-z]*[eé]*[^a-z]*n+[^a-z]*[aá]+[^a-z]*d+[^a-z]*[aá]+).*')
+ytanto=re.compile('.*(y*[^a-z]*t+[^a-z]*[áa]+[^a-z]*n+[^a-z]*t+[^a-z]*[oó]+).*')
+hola=re.compile('[^a-z]*hola[^a-z]*')
+
+def message(event):
+    try:
+        with open('messages.json', 'r') as fp:
+            global messages
+            messages = json.load(fp)
+    except:
+            assert False
+    messages += [event]
+    try:
+        with open('messages.json', 'w') as fp:
+            json.dump(messages, fp)
+    except:
+        assert False
+    if event["user"] == "U8KNJAHEZ":
+        return None
+    text = event["text"].casefold()
+    result="No te entiendo. Puedes quejarte a <@U7EEV8AMQ>."
+    if denada.match(text) is not None or ytanto.match(text) is not None:
+        result = "¡Detesto las majaderías! :smiling_imp:"
+    if hola.match(text) is not None:
+        result = "¡Hola, mundo!"
+     
+    response = slack_client.api_call(
+        "chat.postMessage",
+        channel=event["channel"],
+        text=result,
+        as_user=True,
+        link_names=True
+    )
 
 def ask(question, answer=None):
     data = {
@@ -58,9 +94,16 @@ def ask(question, answer=None):
 
     return [data]
 
-@app.route("/listening", methods=["POST"])
+@app.route("/listening", methods=["GET", "POST"])
 def listening():
-    return Response("[]", mimetype='application/json')
+    data = json.loads(request.data)
+    if "challenge" in data:
+        return Response(data["challenge"], mimetype='application/json')
+    if data["token"] != SLACK_VERIFICATION_TOKEN:
+        return make_response("wrong token", 500)
+    if data["event"]["type"] == "message":
+        response = message(data["event"])
+    return make_response("", 200)
 
 @app.route("/slack/interactive_data", methods=["POST"])
 def message_options():
