@@ -161,7 +161,11 @@ def ask(question, answer=None):
 
 @app.errorhandler(404)
 def not_found(error):
-    return "404"
+    return Response(
+        """
+           Designed and developed by Helio Machado <crushedice2000> at <gmail> dot <com> for the José María Cruz Novillo Arts School at Cuenca (Spain)
+        """
+    )
 
 @app.route("/git", methods=["POST"])
 def git():
@@ -190,18 +194,6 @@ def git():
             return json.dumps({'msg': str(error.output)})
         else:
             return json.dumps({'msg': 'nothing to commit'})
-
-@app.route("/help", methods=["GET", "POST"])
-def api_help():
-    return Response(
-        """/help shows this message
-           /api?method=users.list makes a standard request to the main api and can take via json POST the optional arguments. This method is unsafe and vulnerable to a bunch of possible attacks, but... will anybody look here for this?
-           /get?item=n get the nth question, or print all if item is not specified
-           /add adds a new question, and expects via json POST the question in this format (the 0 at the answer is the index of the right option): {"text": "question", "options": ["a", "b", "c"], "answer": [0, "you were right"]}
-           /refresh reload the question table
-           Designed and developed by Helio Machado <crushedice2000> at <gmail> dot <com> for the José María Cruz Novillo Arts School at Cuenca (Spain)
-        """
-    )
 
 @app.route("/api", methods=["GET", "POST"])
 def api():
