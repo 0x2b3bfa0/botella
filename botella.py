@@ -188,6 +188,7 @@ def api_help():
 @app.route("/api", methods=["GET", "POST"])
 def api():
     """/api?method=users.list with post arguments"""
+    pass # Well, I need this for testing, but I won't leave this enabled carelessly. ;-)
     try:
         method = request.args.get('method')
         if request.data:
@@ -254,21 +255,18 @@ def listening():
 
 @app.route("/git", methods=["POST"])
 def git():
-    eprint("'{}'".format(GITHUB_SECRET))
-    eprint("git  webhook")
     data = json.loads(request.data)
     signature = request.headers.get('X-Hub-Signature')
     if not verify_hash(request.data, signature):
-        eprint("wrong hash")
         return make_response("{'msg': 'invalid hash'}", 403)
     if request.headers.get('X-GitHub-Event') == "ping":
-        eprint("sending pong")
         return Response("{'msg': 'Ok'}", mimetype='application/json')
     elif request.headers.get('X-GitHub-Event') == "push":
         if not data['commits'][0]['distinct']:
             return Response("{'msg': 'nothing new'}", mimetype='application/json')
         try:
             cmd_output = subprocess.check_output(['git', 'pull', 'origin', 'master'],)
+            subprocess.check_output(['systemctl', 'restart', 'botella'],)
             return json.dumps({'msg': str(cmd_output)})
         except subprocess.CalledProcessError as error:
             return json.dumps({'msg': str(error.output)})
