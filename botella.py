@@ -314,13 +314,13 @@ def interactive():
     return make_response("", 200)
 
 def refresh():
-    print("Job", file=sys.stderr)
+    print("Job", file=sys.stderr, flush=True)
     global pending
     load_pending()
     load_counter()
     for user in list(pending):
         index = len(counter[user])
-        print("pending[user]: {}, index: {}, len(questions): {}".format(pending[user], index, len(questions)), file=sys.stderr)
+        print("pending[user]: {}, index: {}, len(questions): {}".format(pending[user], index, len(questions)), file=sys.stderr, flush=True)
         if pending[user] and index < len(questions):
             slack_client.api_call(
                 "chat.postMessage",
@@ -335,7 +335,7 @@ def refresh():
 
 schedule.every(10).seconds.do(refresh)
 schedule.run_continuously()
-print("Init", file=sys.stderr)
+print("Init", file=sys.stderr, flush=True)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5050)
