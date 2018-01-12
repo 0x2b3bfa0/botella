@@ -320,10 +320,8 @@ def watchdog():
     global pending
     load_pending()
     load_counter()
-    print("pending[user]: {}, index: {}, len(questions): {}")
     for user in list(pending):
         index = len(counter[user])
-        print("pending[user]: {}, index: {}, len(questions): {}".format(pending[user], index, len(questions)), file=sys.stderr,flush=True)
         if pending[user] and index < len(questions):
             slack_client.api_call(
                 "chat.postMessage",
@@ -339,6 +337,6 @@ def watchdog():
 parse_files()
 schedule.every(10).seconds.do(watchdog)
 schedule.run_continuously()
- 
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5050)
