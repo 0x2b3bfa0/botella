@@ -70,6 +70,14 @@ def verify_hash(data, signature):
     mac = hmac.new(GITHUB_SECRET, msg=data, digestmod=hashlib.sha1)
     return hmac.compare_digest('sha1=' + mac.hexdigest(), signature)
 
+def parse_files():
+    load_questions()
+    save_questions()
+    load_counter()
+    save_counter()
+    load_pending()
+    save_pending()
+
 def message(event):
     if not 'user' in event: return None
     global messages
@@ -220,14 +228,9 @@ def get():
         return response
 
 @app.route("/refresh", methods=["GET"])
-def load_data():
+def refresh():
     """/refresh reloads the question table"""
-    load_questions()
-    save_questions()
-    load_counter()
-    save_counter()
-    load_pending()
-    save_pending()
+    parse_files()
     return make_response("", 200)
 
 @app.route("/add", methods=["GET", "POST"])
@@ -333,7 +336,7 @@ def watchdog():
             save_pending()
 
 
-load_data()
+parse_files()
 schedule.every(10).seconds.do(watchdog)
 schedule.run_continuously()
 
