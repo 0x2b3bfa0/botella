@@ -14,9 +14,6 @@ import sys
 import os
 import re
 
-def eprint(*args, **kwargs):
-    print(*args, file=sys.stderr, **kwargs)
-
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 GITHUB_SECRET = bytes(os.environ['GITHUB_SECRET'], 'UTF-8')
@@ -72,14 +69,14 @@ def load_pending():
 load_pending()
 save_pending()
 
+def verify_hash(data, signature):
+    mac = hmac.new(GITHUB_SECRET, msg=data, digestmod=hashlib.sha1)
+    return hmac.compare_digest('sha1=' + mac.hexdigest(), signature)
 
 
 #users = [user["id"] for user in slack_client.api_call("users.list")["members"]]
 #users=["U7EEV8AMQ"]
 
-def verify_hash(data, signature):
-    mac = hmac.new(GITHUB_SECRET, msg=data, digestmod=hashlib.sha1)
-    return hmac.compare_digest('sha1=' + mac.hexdigest(), signature)
 
 
 def message(event):
@@ -174,6 +171,25 @@ def ask(question, answer=None):
 def not_found(error):
     return "404"
 
+@app.route("/git", methods=["POST"])
+def git():
+    data = json.loads(request.data)
+    signature = request.headers.get('X-Hub-Signature')
+    if not verify_hash(request.data, signature):
+        return make_response("{'msg': 'invalid hash'}", 403)
+    if request.headers.get('X-GitHub-Event') == "ping":
+        return Response("{'msg': 'Ok'}", mimetype='application/json')
+    elif request.headers.get('X-GitHub-Event') == "push":
+        if not data['commits'][0]['distinct']:
+            return Response("{'msg': 'nothing new'}", mimetype='application/json')
+        try:
+            cmd_output = subprocess.check_output(['git', 'pull', 'origin', 'master'],)
+            return json.dumps({'msg': str(cmd_output)})
+        except subprocess.CalledProcessError as error:
+            return json.dumps({'msg': str(error.output)})
+        else:
+            return json.dumps({'msg': 'nothing to commit'})
+
 @app.route("/help", methods=["GET", "POST"])
 def api_help():
     return Response(
@@ -253,25 +269,6 @@ def listening():
         response = message(data["event"])
     return make_response("", 200)
 
-@app.route("/git", methods=["POST"])
-def git():
-    data = json.loads(request.data)
-    signature = request.headers.get('X-Hub-Signature')
-    if not verify_hash(request.data, signature):
-        return make_response("{'msg': 'invalid hash'}", 403)
-    if request.headers.get('X-GitHub-Event') == "ping":
-        return Response("{'msg': 'Ok'}", mimetype='application/json')
-    elif request.headers.get('X-GitHub-Event') == "push":
-        if not data['commits'][0]['distinct']:
-            return Response("{'msg': 'nothing new'}", mimetype='application/json')
-        try:
-            cmd_output = subprocess.check_output(['git', 'pull', 'origin', 'master'],)
-            eprint(subprocess.check_output(['systemctl', 'restart', 'botella'],))
-            return json.dumps({'msg': str(cmd_output)})
-        except subprocess.CalledProcessError as error:
-            return json.dumps({'msg': str(error.output)})
-        else:
-            return json.dumps({'msg': 'nothing to commit'})
 
 
 @app.route("/slack/interactive_data", methods=["POST"])
