@@ -314,6 +314,7 @@ def interactive():
     return make_response("", 200)
 
 def refresh():
+    print("Job", file=sys.stderr)
     global pending
     load_pending()
     load_counter()
