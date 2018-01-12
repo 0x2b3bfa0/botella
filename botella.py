@@ -333,9 +333,9 @@ def watchdog():
             save_pending()
 
 
+load_data()
 schedule.every(10).seconds.do(watchdog)
 schedule.run_continuously()
-load_data()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5050)
