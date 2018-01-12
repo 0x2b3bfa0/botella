@@ -93,7 +93,7 @@ def message(event):
         result = "¡Hola, mundo!"
     if re.compile('[^a-z]*hola[^a-z]*@?botella[^a-z]*').match(text) is not None:
         name = slack_client.api_call("users.info", user=event["user"])["user"]["real_name"]
-        result = "¡Hola, {}! prueba".format(name)
+        result = "¡Hola, {}!".format(name)
     if re.compile('[^a-z]*hola[^a-z]*@?botel?[ly]ita[^a-z]*').match(text) is not None:
         name = slack_client.api_call("users.info", user=event["user"])["user"]["real_name"]
         result = "¡Hola, {} (ponle el diminutivo más ridículo y ñoño que conozcas)!".format(name)
