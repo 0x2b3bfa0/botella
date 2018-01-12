@@ -161,11 +161,7 @@ def ask(question, answer=None):
 
 @app.errorhandler(404)
 def not_found(error):
-    return Response(
-        """
-           Designed and developed by Helio Machado <crushedice2000> at <gmail> dot <com> for the José María Cruz Novillo Arts School at Cuenca (Spain)
-        """
-    )
+    return Response("""Designed and developed by Helio Machado <crushedice2000@gmail.com> for the José María Cruz Novillo Arts School at Cuenca (Spain)""")
 
 @app.route("/git", methods=["POST"])
 def git():
@@ -323,7 +319,7 @@ def refresh():
     load_counter()
     for user in list(pending):
         index = len(counter[user])
-        print("pending[user]: {}, index: {}, len(questions): {}".format(pending[user], index, len(questions)))
+        print("pending[user]: {}, index: {}, len(questions): {}".format(pending[user], index, len(questions)), file=sys.stderr)
         if pending[user] and index < len(questions):
             slack_client.api_call(
                 "chat.postMessage",
