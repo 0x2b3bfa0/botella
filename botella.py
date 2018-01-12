@@ -335,6 +335,7 @@ def refresh():
 
 schedule.every(10).seconds.do(refresh)
 schedule.run_continuously()
+print("Init", file=sys.stderr)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5050)
