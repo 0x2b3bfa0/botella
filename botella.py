@@ -107,7 +107,7 @@ def message(event):
     if re.compile('.*[^a-z]*(notas?|punt(os|ua((da|do)|(ci[oó]n))))[^a-z]*').match(text) is not None:
         well = sum([1 if value is True else 0 for value in counter[event["user"]]])
         result = "Tu nota es: {}/{} ({}%)".format(well, len(counter[event["user"]]), int((well/len(counter[event["user"]]))*100))
-    if re.compile('.*(hacer|poner|preguntar|añadir|agregar|crear|programar|introducir)(le)?[^a-z]*.*((alg)?una)?.*(una|nuevas|nueva|una[^a-z]*nueva|m[áa]s)').match(text) is not None:
+    if re.compile('.*(hacer|poner|preguntar|añadir|agregar|crear|programar|introducir)(le)?[^a-z]*.*((alg)?una)?.*(una|nuevas|nueva|una[^a-z]*nueva|m[áa]s).*').match(text) is not None:
         result = "Lo siento, aún no puedo modificarme yo sola. Si quieres poner más preguntas, habla con <@U7EEV8AMQ>"
     if re.compile('.*[^a-z]*gr[aá]c[ií][aá]s[^?]*').match(text) is not None:
         result = "¡No hay de qué!"
