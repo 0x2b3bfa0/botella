@@ -184,6 +184,11 @@ def git():
             return Response("{'msg': 'nothing new'}", mimetype='application/json')
         try:
             cmd_output = subprocess.check_output(['git', 'pull', 'origin', 'master'],)
+            eprint(subprocess.check_output(['systemctl', 'restart', 'botella'],))
+            slack_client.api_call("chat.postMessage",
+                                  channel="U7EEV8AMQ", # Helio Machado
+                                  text="GitHub commit deployment successfull",
+                                  as_user=True)
             return json.dumps({'msg': str(cmd_output)})
         except subprocess.CalledProcessError as error:
             return json.dumps({'msg': str(error.output)})
