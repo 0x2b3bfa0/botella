@@ -178,7 +178,7 @@ def git():
             cmd_output = subprocess.check_output(['git', 'pull'],)
             print(slack_client.api_call("chat.postMessage",
                                   channel="U7EEV8AMQ", # Helio Machado
-                                  text="GitHub commit deployment successfully.",
+                                  text="GitHub commit deployment successful.",
                                   as_user=True),file=sys.stderr)
             subprocess.check_output(['systemctl', 'restart', 'botella'],)
             return json.dumps({'msg': str(cmd_output)})
