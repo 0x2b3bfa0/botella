@@ -98,7 +98,7 @@ def message(event):
         name = slack_client.api_call("users.info", user=event["user"])["user"]["real_name"]
         result = "¡Hola, {} (ponle el diminutivo más ridículo y ñoño que conozcas)!".format(name)
     if re.compile('(.*(piensas|dime|cuéntame|opinar|pensar).*|.*[?][^a-z]*)').match(text) is not None:
-        result = "Aún no sé pensar ni responder preguntas de forma libre, pero me gustaría aprender. :smile: Si quieres enseñarme... sólo te hace falta saber un poquito de <https://www.python.org|Python>, <https://www.tensorflow.org|TensorFlow> y <https://spacy.io|spaCy>."
+        result = "Aún no sé pensar ni responder preguntas de forma libre, pero me gustaría aprender. :smile: Si quieres enseñarme... sólo te hace falta saber un poquito de <https://www.python.org|Python>, <https://www.tensorflow.org|TensorFlow> y <https://spacy.io|spaCy>. Puedes encontrar <https://github.com/crushedice2000/botella|mi código> en GitHub."
     if re.compile('.*[^a-z]*(qu[ée]|[c[óo]m[óo]|[c[úu][áa]ndo|[d[óo]nd[ée]|q[uú][eé]|[c[uú][áa]l|qu[íi][eé]n|[c[uú][aá]nto).*').match(text) is not None:
         result = "Lo siento, no sé cómo responderte. Si lo que me has preguntado es tan obvio, prueba a quejarte a mi creador (<@U7EEV8AMQ>) para que me enseñe a contestarlo."
     if re.compile('.*te[^a-z]*llamas.*').match(text) is not None or re.compile('.*tu[^a-z]*nombre.*').match(text) is not None:
@@ -108,7 +108,7 @@ def message(event):
     if re.compile('.*[^a-z]*(notas?|punt(os|ua((da|do)|(ci[oó]n))))[^a-z]*').match(text) is not None:
         well = sum([1 if value is True else 0 for value in counter[event["user"]]])
         result = "Tu nota es: {}/{} ({}%)".format(well, len(counter[event["user"]]), int((well/len(counter[event["user"]]))*100))
-    if re.compile('.*(hacer|poner|preguntar|añadir|agregar|crear|programar|introducir)(le)?[^a-z]*.*((alg)?una)?.*(una|nuevas|nueva|una[^a-z]*nueva|m[áa]s).*').match(text) is not None:
+    if re.compile('.*(hacer|poner|preguntar|añadir|agregar|crear|programar|introducir)(le)?[^a-z]*((alg)?una)?[^a-z]*(una|nuevas|nueva|una[^a-z]*nueva|m[áa]s)[^a-z]*(pregunta)?.*').match(text) is not None:
         result = "Lo siento, aún no puedo modificarme yo sola. Si quieres poner más preguntas, habla con <@U7EEV8AMQ>"
     if re.compile('.*[^a-z]*gr[aá]c[ií][aá]s[^?]*').match(text) is not None:
         result = "¡No hay de qué!"
