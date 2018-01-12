@@ -339,6 +339,6 @@ def watchdog():
 parse_files()
 schedule.every(10).seconds.do(watchdog)
 schedule.run_continuously()
-
+ 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5050)
