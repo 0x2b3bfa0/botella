@@ -10,8 +10,9 @@ import hashlib
 import time
 import hmac
 import json
-import re
+import sys
 import os
+import re
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
