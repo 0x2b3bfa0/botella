@@ -314,7 +314,7 @@ def interactive():
     return make_response("", 200)
 
 def refresh():
-    global quiestions
+    global questions
     global pending
     load_pending()
     load_counter()
