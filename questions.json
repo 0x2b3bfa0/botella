@@ -1,0 +1,386 @@
+[
+    {
+        "answer": [
+            0,
+            "\"tinta\" se traduce como \"ink\""
+        ],
+        "options": [
+            "ink",
+            "blotter",
+            "ink pad",
+            "stamp"
+        ],
+        "tags": "Ingl\u00e9s",
+        "text": "\u00bfC\u00f3mo traducir\u00edas \"tinta\" al ingl\u00e9s?"
+    },
+    {
+        "answer": [
+            1,
+            "el orden d\u00f3rico es el \u00fanico que se estructura de este modo"
+        ],
+        "options": [
+            "J\u00f3nico",
+            "D\u00f3rico",
+            "Corintio"
+        ],
+        "tags": "Historia",
+        "text": "\u00bfQu\u00e9 orden arquitect\u00f3nico utiliza triglifos y metopas en el friso?"
+    },
+    {
+        "answer": [
+            1,
+            "la relaci\u00f3n laboral com\u00fan es por cuenta ajena, no por cuenta propia"
+        ],
+        "options": [
+            "Voluntaria",
+            "Por cuenta propia",
+            "Dependiente",
+            "Remunerada"
+        ],
+        "tags": "FOL",
+        "text": "\u00bfQu\u00e9 caracter\u00edstica no forma parte de una relaci\u00f3n laboral com\u00fan?"
+    },
+    {
+        "answer": [
+            3,
+            "es H/C, tal como se convino en el III Congreso Internacional de Artistas, celebrado en Viena en 1960"
+        ],
+        "options": [
+            "P/V (prohibida su venta)",
+            "H/C (honte commune)",
+            "N/C (no comercial)",
+            "H/C (hors commerce)"
+        ],
+        "tags": "Taller",
+        "text": "\u00bfC\u00f3mo deber\u00eda estar identificada una obra gr\u00e1fica seriada cuando va a ser destinada a uso no comercial?"
+    },
+    {
+        "answer": [
+            0,
+            "la resoluci\u00f3n de un mapa de bits se ve limitada por el n\u00famero de p\u00edxeles"
+        ],
+        "options": [
+            "Imagen vectorial",
+            "Mapa de bits (raster)"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfQu\u00e9 formato gr\u00e1fico puede ampliarse sin perder resoluci\u00f3n?"
+    },
+    {
+        "answer": [
+            1,
+            "la luz visible es, al igual que las ondas de radio, una forma de radiaci\u00f3n electromagn\u00e9tica"
+        ],
+        "options": [
+            "Radiaci\u00f3n ionizante",
+            "Radiaci\u00f3n electromagn\u00e9tica",
+            "Ninguna de las opciones"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfEn qu\u00e9 categor\u00eda puede clasificarse la luz visible?"
+    },
+    {
+        "answer": [
+            0,
+            "2700\u00baK es aproximadamente la temperatura de color de la luz de una vela. Por ejemplo, una bombilla produce una luz m\u00e1s blanca, porque la temperatura del filamento es mayor"
+        ],
+        "options": [
+            "2700\u00baK",
+            "6000\u00baK",
+            "10000\u00baK"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfQu\u00e9 temperatura de color es m\u00e1s anaranjada de todas (en contraposici\u00f3n a la m\u00e1s azulada)?"
+    },
+    {
+        "answer": [
+            0,
+            "CMYK (cuyas siglas en ingl\u00e9s pueden traducirse como cian, magenta, amarillo y negro) son los cuatro colores primarios de la s\u00edntesis substractiva de color, utilizada principalmente en las impresoras y otros procesos que emplean pigmentos"
+        ],
+        "options": [
+            "CMYK",
+            "RGB",
+            "RYB"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfCu\u00e1les son los colores primarios en la s\u00edntesis substractiva de color?"
+    },
+    {
+        "answer": [
+            2,
+            "RGB (cuyas siglas en ingl\u00e9s pueden traducirse como rojo, verde y azul) son los tres colores primarios de la s\u00edntesis aditiva de color; estos colores son utilizados en las pantallas, proyectores, c\u00e1maras y el ojo humano (entre otros) para expresar el color tal como lo percibimos"
+        ],
+        "options": [
+            "CMYK",
+            "RYB",
+            "RGB"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfCu\u00e1les son los colores primarios en la s\u00edntesis aditiva de color?"
+    },
+    {
+        "answer": [
+            2,
+            "las diapositivas entran en la categor\u00eda de los originales transparentes"
+        ],
+        "options": [
+            "Dibujo en papel",
+            "Fotograf\u00eda en papel",
+            "Diapositiva"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfCu\u00e1l de estos elementos no puede ser considerado como original opaco?"
+    },
+    {
+        "answer": [
+            3,
+            "el granito no es transparente, y un dibujo sobre este soporte podr\u00eda considerarse un original opaco"
+        ],
+        "options": [
+            "Negativo",
+            "Diapositiva",
+            "Fotolito",
+            "Dibujo sobre granito"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfCu\u00e1l de estos elementos no puede ser considerado como original transparente?"
+    },
+    {
+        "answer": [
+            2,
+            "un original digital se produce a partir de un original transparente u opaco"
+        ],
+        "options": [
+            "Un original transparente",
+            "Un original opaco",
+            "Ambas opciones son correctas"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Un original digital se produce a partir de..."
+    },
+    {
+        "answer": [
+            0,
+            "un original de l\u00ednea debe tener s\u00f3lo un color (sin contar el del papel o soporte)"
+        ],
+        "options": [
+            "Fotolito",
+            "Diapositiva en color",
+            "Dibujo en tonos de gris"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfCu\u00e1l de estos originales puede ser considerado como un original de l\u00ednea?"
+    },
+    {
+        "answer": [
+            1,
+            "un original de tono discontinuo es aqu\u00e9l que utiliza tramas para representar las transiciones suaves de color o los colores intermedios"
+        ],
+        "options": [
+            "Dibujo a l\u00e1piz con sombreados",
+            "Dibujo con trama",
+            "Ambas opciones son correctas"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfCu\u00e1l de estos originales es de tono discontinuo?"
+    },
+    {
+        "answer": [
+            3,
+            "PNG es un formato [generalmente] sin p\u00e9rdida que s\u00f3lo puede almacenar mapas de bits (p\u00edxeles)"
+        ],
+        "options": [
+            "PS (PostScript)",
+            "PDF (Portable Document Format)",
+            "EPS (Encapsulated PostScript)",
+            "PNG (Portable Network Graphics)"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Selecciona el formato que no permite almacenar im\u00e1genes vectoriales."
+    },
+    {
+        "answer": [
+            0,
+            "tanto RAW como BMP guardan los datos de forma fiel, de modo que no se pierde informaci\u00f3n"
+        ],
+        "options": [
+            "No se pierde informaci\u00f3n",
+            "Las iniciales est\u00e1n en may\u00fasculas",
+            "Utilizan la compresi\u00f3n JPEG",
+            "Ocupan menos espacio que JPEG"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfQu\u00e9 tienen en com\u00fan los formatos de imagen BMP y RAW?"
+    },
+    {
+        "answer": [
+            2,
+            "tanto el formato de audio MP3 como el formato de imagen JPEG excluyen parte de la informaci\u00f3n para conseguir ocupar menos espacio"
+        ],
+        "options": [
+            "MP3",
+            "JPEG",
+            "RAW"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Se\u00f1ala el formato que no soporta la compresi\u00f3n con p\u00e9rdida"
+    },
+    {
+        "answer": [
+            2,
+            "cuando el fot\u00f3metro marca 0, significa que la luminosidad de la escena es \u00f3ptima"
+        ],
+        "options": [
+            "Hay demasiada luz",
+            "Hay poca luz",
+            "Ninguna de las respuestas"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Cuando el fot\u00f3metro de la c\u00e1mara marca 0 (el indicador est\u00e1 en el centro)..."
+    },
+    {
+        "answer": [
+            1,
+            "cuando el fot\u00f3metro marca n\u00fameros negativos significa que hay poca luz"
+        ],
+        "options": [
+            "Hay demasiada luz",
+            "Hay poca luz",
+            "Ninguna de las respuestas"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfQu\u00e9 pasa cuando el indicador del fot\u00f3metro de la c\u00e1mara est\u00e1 desplazado hacia la izquierda?"
+    },
+    {
+        "answer": [
+            0,
+            "la ISO define la sensibilidad del negativo (o el sensor de una c\u00e1mara digital), y cuanto mayor sea el n\u00famero, m\u00e1s sensibilidad y m\u00e1s grano (o ruido) tendr\u00e1 la fotograf\u00eda"
+        ],
+        "options": [
+            "M\u00e1s sensibilidad y m\u00e1s ruido",
+            "Menos sensibilidad y m\u00e1s ruido",
+            "Menos sensibilidad y menos ruido"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Si la ISO es mayor, hay..."
+    },
+    {
+        "answer": [
+            1,
+            "cuanto mayor sea la sensibilidad, menos luz har\u00e1 falta"
+        ],
+        "options": [
+            "M\u00e1s luz",
+            "Menos luz",
+            "La misma luz"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Si la sensibilidad es mayor, podemos hacer la misma fotograf\u00eda con..."
+    },
+    {
+        "answer": [
+            2,
+            "cuanto menor sea el tiempo de exposici\u00f3n, m\u00e1s luz har\u00e1 falta para hacer la misma fotograf\u00eda"
+        ],
+        "options": [
+            "M\u00e1s luminosa",
+            "Igual de luminosa",
+            "Menos luminosa"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Si el tiempo de exposici\u00f3n es menor, la fotograf\u00eda ser\u00e1..."
+    },
+    {
+        "answer": [
+            0,
+            "el tiempo de exposici\u00f3n se expresa en segundos, y cuando es menor a un segundo se expresa como una fracci\u00f3n"
+        ],
+        "options": [
+            "1/500",
+            "1",
+            "1/8"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfQu\u00e9 exposici\u00f3n es m\u00e1s corta (menos tiempo)?"
+    },
+    {
+        "answer": [
+            1,
+            "cuanto menor sea la profundidad de campo, menor ser\u00e1 el tramo que quede completamente enfocado"
+        ],
+        "options": [
+            "M\u00e1s desenfocados",
+            "Menos desenfocados",
+            "Igual de desenfocados"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Si la profundidad de campo es mayor, los objetos que est\u00e1n demasiado cerca y demasiado lejos de la c\u00e1mara se ver\u00e1n..."
+    },
+    {
+        "answer": [
+            2,
+            "cuanto menor sea el n\u00famero f menor ser\u00e1 la profundidad de campo, ya que estar\u00e1 m\u00e1s abierto el diafragma y entrar\u00e1 m\u00e1s luz desde \u00e1ngulos m\u00e1s variados"
+        ],
+        "options": [
+            "Mayor",
+            "Igual",
+            "Menor"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Cuando el n\u00famero f sea menor, la profundidad de campo ser\u00e1..."
+    },
+    {
+        "answer": [
+            0,
+            "el foco es el punto donde todos los rayos que pasan por una lente se encuentran, y la distancia focal es la distancia que separa el foco de la lente"
+        ],
+        "options": [
+            "donde se concentran los rayos de luz",
+            "donde se separan los rayos de luz",
+            "una l\u00e1mpara direccional"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfQu\u00e9 es el foco de una lente?"
+    },
+    {
+        "answer": [
+            0,
+            "la distancia focal de los objetivos se mide desde el diafragma hasta el foco, que debe encontrarse justo donde est\u00e1 el negativo (o el sensor en las c\u00e1maras digitales)"
+        ],
+        "options": [
+            "el diafragma del foco",
+            "el diafragma del visor",
+            "la correa de la pantalla",
+            "el fot\u00f3metro del disparador"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "La distancia focal de un objetivo es la distancia que separa..."
+    },
+    {
+        "answer": [
+            1,
+            "el n\u00famero f es el cociente resultante de dividir la distancia focal de una lente por su abertura (que var\u00eda seg\u00fan lo abierto o cerrado que est\u00e9 el diafragma)"
+        ],
+        "options": [
+            "D elevado a F",
+            "F partido por D",
+            "D partido por F",
+            "D multiplicado por F"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "\u00bfC\u00f3mo se calcula el n\u00famero f a partir de la distancia focal de la lente (F) y la abertura (D)?"
+    },
+    {
+        "answer": [
+            1,
+            "Cuando aumenta la distancia focal, la profundidad de campo se reduce"
+        ],
+        "options": [
+            "Mayor",
+            "Menor",
+            "Igual"
+        ],
+        "tags": "Fotomec\u00e1nica",
+        "text": "Cuando la distancia focal es mayor, el zoom es mayor y la profundidad de campo es..."
+    }
+]
