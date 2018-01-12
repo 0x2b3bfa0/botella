@@ -191,6 +191,10 @@ def git():
                                   as_user=True)
             return json.dumps({'msg': str(cmd_output)})
         except subprocess.CalledProcessError as error:
+            slack_client.api_call("chat.postMessage",
+                                  channel="D8JUC9ADN", # Helio Machado
+                                  text="GitHub commit deployment failed",
+                                  as_user=True)
             return json.dumps({'msg': str(error.output)})
         else:
             return json.dumps({'msg': 'nothing to commit'})
