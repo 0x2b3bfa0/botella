@@ -73,7 +73,7 @@ def verify_hash(data, signature):
     mac = hmac.new(GITHUB_SECRET, msg=data, digestmod=hashlib.sha1)
     return hmac.compare_digest('sha1=' + mac.hexdigest(), signature)
 
-#
+
 #users = [user["id"] for user in slack_client.api_call("users.list")["members"]]
 #users=["U7EEV8AMQ"]
 
