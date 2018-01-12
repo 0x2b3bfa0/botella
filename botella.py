@@ -184,13 +184,13 @@ def git():
             cmd_output = subprocess.check_output(['git', 'pull'],)
             subprocess.check_output(['systemctl', 'restart', 'botella'],)
             slack_client.api_call("chat.postMessage",
-                                  channel="D8JUC9ADN", # Helio Machado
+                                  channel="U7EEV8AMQ", # Helio Machado
                                   text="GitHub commit deployment successfull",
                                   as_user=True)
             return json.dumps({'msg': str(cmd_output)})
         except subprocess.CalledProcessError as error:
             slack_client.api_call("chat.postMessage",
-                                  channel="D8JUC9ADN", # Helio Machado
+                                  channel="U7EEV8AMQ", # Helio Machado
                                   text="GitHub commit deployment failed: `{}`".format(error),
                                   as_user=True)
             return json.dumps({'msg': str(error.output)})
