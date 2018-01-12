@@ -317,6 +317,7 @@ def watchdog():
     global pending
     load_pending()
     load_counter()
+    print("pending[user]: {}, index: {}, len(questions): {}")
     for user in list(pending):
         index = len(counter[user])
         print("pending[user]: {}, index: {}, len(questions): {}".format(pending[user], index, len(questions)), file=sys.stderr,flush=True)
