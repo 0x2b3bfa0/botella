@@ -13,6 +13,8 @@ import json
 import re
 import os
 
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
@@ -251,17 +253,18 @@ def listening():
 
 @app.route("/git", methods=["POST"])
 def git():
-    print("git  webhook")
+    eprint("'{}'".format(GITHUB_SECRET))
+    eprint("git  webhook")
     data = json.loads(request.data)
     signature = request.headers.get('X-Hub-Signature')
     if not verify_hash(request.data, signature):
-        print("wrong hash")
+        eprint("wrong hash")
         return make_response("{'msg': 'invalid hash'}", 403)
     if request.headers.get('X-GitHub-Event') == "ping":
-        print("sending pong")
+        eprint("sending pong")
         return Response("{'msg': 'Ok'}", mimetype='application/json')
     elif request.headers.get('X-GitHub-Event') == "push":
-        if not payload['commits'][0]['distinct']:
+        if not data['commits'][0]['distinct']:
             return Response("{'msg': 'nothing new'}", mimetype='application/json')
         try:
             cmd_output = subprocess.check_output(['git', 'pull', 'origin', 'master'],)
