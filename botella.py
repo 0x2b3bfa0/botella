@@ -182,11 +182,11 @@ def git():
             return Response("{'msg': 'ignored'}", mimetype='application/json')
         try:
             cmd_output = subprocess.check_output(['git', 'pull'],)
-            subprocess.check_output(['systemctl', 'restart', 'botella'],)
             print(slack_client.api_call("chat.postMessage",
                                   channel="U7EEV8AMQ", # Helio Machado
-                                  text="GitHub commit deployment successfull",
+                                  text="GitHub commit deployment successfully.",
                                   as_user=True),file=sys.stderr)
+            subprocess.check_output(['systemctl', 'restart', 'botella'],)
             return json.dumps({'msg': str(cmd_output)})
         except subprocess.CalledProcessError as error:
             slack_client.api_call("chat.postMessage",
@@ -196,7 +196,7 @@ def git():
             return json.dumps({'msg': str(error.output)})
         else:
             return json.dumps({'msg': 'nothing to commit'})
- 
+
 @app.route("/help", methods=["GET", "POST"])
 def api_help():
     return Response(
