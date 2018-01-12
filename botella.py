@@ -196,7 +196,7 @@ def git():
             return json.dumps({'msg': str(error.output)})
         else:
             return json.dumps({'msg': 'nothing to commit'})
-
+ 
 @app.route("/help", methods=["GET", "POST"])
 def api_help():
     return Response(
