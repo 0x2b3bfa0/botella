@@ -90,10 +90,10 @@ def message(event):
     text = event["text"].casefold()
     result="No estoy segura de haberte entendido. Puedes quejarte ante <@U7EEV8AMQ> para que me reprograme. Si lo que quieres es responder a una pregunta que te he hecho, pulsa sobre la respuesta, que para eso soy interactiva. {}".format("¡Gracias!" if event["user"] == "U7G0C8L02" else "")
     if re.compile('[^a-z]*hola[^a-z]*(mundo[^a-z]*)?').match(text) is not None:
-        result = "¡Hola, mundo remoto 1!"
+        result = "¡Hola, mundo!"
     if re.compile('[^a-z]*hola[^a-z]*@?botella[^a-z]*').match(text) is not None:
         name = slack_client.api_call("users.info", user=event["user"])["user"]["real_name"]
-        result = "¡Hola, {}!".format(name)
+        result = "¡Hola, {}! prueba".format(name)
     if re.compile('[^a-z]*hola[^a-z]*@?botel?[ly]ita[^a-z]*').match(text) is not None:
         name = slack_client.api_call("users.info", user=event["user"])["user"]["real_name"]
         result = "¡Hola, {} (ponle el diminutivo más ridículo y ñoño que conozcas)!".format(name)
