@@ -14,12 +14,14 @@ import sys
 import os
 import re
 
+
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 GITHUB_SECRET = bytes(os.environ['GITHUB_SECRET'], 'UTF-8')
 
 app = Flask(__name__)
 slack_client = SlackClient(SLACK_BOT_TOKEN)
+
 
 questions = dict()
 def save_questions():
@@ -30,8 +32,6 @@ def load_questions():
     global questions
     with open('questions.json', 'r') as fp:
         questions = json.load(fp)
-load_questions()
-save_questions()
 
 messages = []
 def save_messages():
@@ -42,8 +42,6 @@ def load_messages():
     global messages
     with open('messages.json', 'r') as fp:
         messages = json.load(fp)
-load_messages()
-save_messages()
 
 counter = dict()
 def save_counter():
@@ -54,8 +52,6 @@ def load_counter():
     global counter
     with open('counter.json', 'r') as fp:
         counter = json.load(fp)
-load_counter()
-save_counter()
 
 pending = dict()
 def save_pending():
@@ -66,16 +62,14 @@ def load_pending():
     global pending
     with open('pending.json', 'r') as fp:
         pending = json.load(fp)
-load_pending()
-save_pending()
+
+
+# users=["U7EEV8AMQ"] # Helio Machado
+# users = [user["id"] for user in slack_client.api_call("users.list")["members"]]
 
 def verify_hash(data, signature):
     mac = hmac.new(GITHUB_SECRET, msg=data, digestmod=hashlib.sha1)
     return hmac.compare_digest('sha1=' + mac.hexdigest(), signature)
-
-
-#users = [user["id"] for user in slack_client.api_call("users.list")["members"]]
-#users=["U7EEV8AMQ"]
 
 def message(event):
     if not 'user' in event: return None
@@ -208,6 +202,7 @@ def api_help():
            Designed and developed by Helio Machado <crushedice2000> at <gmail> dot <com> for the José María Cruz Novillo Arts School at Cuenca (Spain)
         """
     )
+
 @app.route("/api", methods=["GET", "POST"])
 def api():
     """/api?method=users.list with post arguments"""
@@ -223,6 +218,7 @@ def api():
         return Response('{"error": true}')
     else:
         return Response(json.dumps(response), mimetype='application/json')
+
 @app.route("/get", methods=["GET"])
 def get():
     """/get?item=3 item is optional"""
@@ -235,6 +231,7 @@ def get():
         except:
             response = Response('{"error": true}', mimetype='application/json')
         return response
+
 @app.route("/refresh", methods=["GET"])
 def refresh():
     """/refresh reloads the question table"""
@@ -245,6 +242,7 @@ def refresh():
     load_pending()
     save_pending()
     return make_response("", 200)
+
 @app.route("/add", methods=["GET", "POST"])
 def add():
     try:
@@ -264,7 +262,6 @@ def add():
     save_questions()
     return Response('{"error":false}')
 
-
 @app.route("/listening", methods=["GET", "POST"])
 def listening():
     data = json.loads(request.data)
@@ -275,8 +272,6 @@ def listening():
     if data["event"]["type"] == "message":
         response = message(data["event"])
     return make_response("", 200)
-
-
 
 @app.route("/slack/interactive_data", methods=["POST"])
 def interactive_data():
@@ -330,10 +325,10 @@ def interactive():
 
     return make_response("", 200)
 
-
 def refresh():
     global pending
     load_pending()
+    load_counter()
     for user in list(pending):
         index = len(counter[user])
         if pending[user] and index < len(questions):
