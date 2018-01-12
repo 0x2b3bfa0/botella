@@ -63,7 +63,6 @@ def load_pending():
     with open('pending.json', 'r') as fp:
         pending = json.load(fp)
 
-
 # users=["U7EEV8AMQ"] # Helio Machado
 # users = [user["id"] for user in slack_client.api_call("users.list")["members"]]
 
@@ -221,7 +220,7 @@ def get():
         return response
 
 @app.route("/refresh", methods=["GET"])
-def refresh():
+def load_data():
     """/refresh reloads the question table"""
     load_questions()
     save_questions()
@@ -313,7 +312,7 @@ def interactive():
 
     return make_response("", 200)
 
-def refresh():
+def watchdog():
     global questions
     global pending
     load_pending()
@@ -332,8 +331,9 @@ def refresh():
             save_pending()
 
 
-schedule.every(10).seconds.do(refresh)
+schedule.every(10).seconds.do(watchdog)
 schedule.run_continuously()
+load_data()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5050)
