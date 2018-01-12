@@ -179,9 +179,9 @@ def git():
         return Response("{'msg': 'Ok'}", mimetype='application/json')
     elif request.headers.get('X-GitHub-Event') == "push":
         if not data['commits'][0]['distinct']:
-            return Response("{'msg': 'nothing new'}", mimetype='application/json')
+            return Response("{'msg': 'ignored'}", mimetype='application/json')
         try:
-            cmd_output = subprocess.check_output(['git', 'pull', 'origin', 'master'],)
+            cmd_output = subprocess.check_output(['git', 'pull'],)
             subprocess.check_output(['systemctl', 'restart', 'botella'],)
             slack_client.api_call("chat.postMessage",
                                   channel="D8JUC9ADN", # Helio Machado
@@ -191,7 +191,7 @@ def git():
         except subprocess.CalledProcessError as error:
             slack_client.api_call("chat.postMessage",
                                   channel="D8JUC9ADN", # Helio Machado
-                                  text="GitHub commit deployment failed",
+                                  text="GitHub commit deployment failed: `{}`".format(error),
                                   as_user=True)
             return json.dumps({'msg': str(error.output)})
         else:
