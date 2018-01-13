@@ -260,6 +260,7 @@ def add():
     except:
         return Response('{"error":true}')
     save_questions()
+    load_questions()
     return Response('{"error":false}')
 
 @app.route("/listening", methods=["GET", "POST"])
@@ -290,7 +291,6 @@ def interactive():
         counter[user] = []
     if len(counter[user]) != index:
         return make_response("", 200)
-    print("DEBUG", questions, flush=True, file=sys.stderr)
 
     slack_client.api_call(
       "chat.update",
