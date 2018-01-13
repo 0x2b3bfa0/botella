@@ -251,7 +251,6 @@ def add():
         assert len(data["answer"]) == 2
         for option in data["options"]: assert type(option) is str
         question = {"text": data["text"], "options": data["options"], "answer": data["answer"]}
-        print("HELLO"+str(data), file=sys.stderr,  flush=True)
         if "prepend" in data:
             assert type(data["prepend"]) is list
             assert len(data["prepend"]) == 2
