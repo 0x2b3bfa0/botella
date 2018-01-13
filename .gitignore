@@ -1,8 +1,5 @@
 counter.json
 messages.json
 pending.json
-<<<<<<< HEAD
-.ftpconfig
-=======
 questions.json
->>>>>>> origin/master
+.ftpconfig
