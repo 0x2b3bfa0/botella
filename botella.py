@@ -161,7 +161,7 @@ def ask(question, answer=None):
     if answer is not None:
         correct = answer == question["answer"][0]
         if "prepend" in question:
-            right, wrong = question["prepend"][0], question["prepend"][1]
+            right, wrong = question["prepend"]
         else:
             right, wrong = "Efectivamente", "No"
         for index, _ in enumerate(data["actions"]):
