@@ -254,11 +254,11 @@ def add():
             assert type(data["prepend"]) is list
             assert len(data["prepend"]) == 2
             for value in data["prepend"]: assert type(value) is str
-            question["prepend"]=data["prepend"]
+            question["prepend"] = data["prepend"]
         if "tags" in data:
             assert type(data["tags"]) is list
             for value in data["tags"]: assert type(value) is str
-            question["tags"]=data["tags"]
+            question["tags"] = data["tags"]
         questions += [question]
     except:
         return Response('{"error":true}')
