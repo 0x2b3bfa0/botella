@@ -304,6 +304,7 @@ def add():
 
 @app.route("/listening", methods=["GET", "POST"])
 def listening():
+    global pending
     data = json.loads(request.data)
     if "challenge" in data:
         return Response(data["challenge"], mimetype='application/json')
@@ -312,7 +313,8 @@ def listening():
     if data["event"]["type"] == "message":
         threading.Thread(target=message, args=[data["event"]]).start()
     elif data["event"]["type"] == "team_join":
-        pending += [{data["event"]["user"]["id"]: true}]
+        pending[data["event"]["user"]["id"]] = True
+        save_pending()
     return make_response("", 200)
 
 @app.route("/slack/interactive_data", methods=["POST"])
@@ -337,7 +339,10 @@ def watchdog():
     load_pending()
     load_counter()
     for user in list(pending):
-        index = len(counter[user])
+        try:
+            index = len(counter[user])
+        except:
+            index = 0
         if pending[user] and index < len(questions):
             slack_client.api_call(
                 "chat.postMessage",
