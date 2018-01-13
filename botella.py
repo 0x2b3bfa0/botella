@@ -159,6 +159,10 @@ def ask(question, answer=None):
 
     if answer is not None:
         correct = answer == question["answer"][0]
+        if "values" in question:
+            right, wrong = question["values"][0], question["values"][1]
+        else:
+            right, wrong = "Efectivamente", "No"
         for index, _ in enumerate(data["actions"]):
             data["actions"][index]["style"] = "primary" if index == question["answer"][0] else "danger"
         data["fields"][0]["value"] = "{}, {}".format("Efectivamente" if correct else "No", question["answer"][1])
@@ -233,7 +237,7 @@ def refresh():
     parse_files()
     return make_response("", 200)
 
-@app.route("/add", methods=["GET", "POST"])
+@app.route("/add", methods=["POST"])
 def add():
     try:
         global questions
@@ -246,6 +250,10 @@ def add():
         assert len(data["answer"]) == 2
         for option in data["options"]: assert type(option) is str
         question = {"text": data["text"], "options": data["options"], "answer": data["answer"]}
+        if "value" in data:
+            assert type(data["value"]) is list
+            assert len(data["value"]) == 2
+            for value in data["value"]: assert type(value) is str
         questions += [question]
     except:
         return Response('{"error":true}')

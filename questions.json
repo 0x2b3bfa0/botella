@@ -10,7 +10,7 @@
             "ink pad",
             "stamp"
         ],
-        "tags": "Ingl\u00e9s",
+        "tags":  ["Ingl\u00e9s"],
         "text": "\u00bfC\u00f3mo traducir\u00edas \"tinta\" al ingl\u00e9s?"
     },
     {
@@ -23,7 +23,7 @@
             "D\u00f3rico",
             "Corintio"
         ],
-        "tags": "Historia",
+        "tags":  ["Historia"],
         "text": "\u00bfQu\u00e9 orden arquitect\u00f3nico utiliza triglifos y metopas en el friso?"
     },
     {
@@ -37,7 +37,7 @@
             "Dependiente",
             "Remunerada"
         ],
-        "tags": "FOL",
+        "tags":  ["FOL"],
         "text": "\u00bfQu\u00e9 caracter\u00edstica no forma parte de una relaci\u00f3n laboral com\u00fan?"
     },
     {
@@ -51,7 +51,7 @@
             "N/C (no comercial)",
             "H/C (hors commerce)"
         ],
-        "tags": "Taller",
+        "tags":  ["Taller"],
         "text": "\u00bfC\u00f3mo deber\u00eda estar identificada una obra gr\u00e1fica seriada cuando va a ser destinada a uso no comercial?"
     },
     {
@@ -63,7 +63,7 @@
             "Imagen vectorial",
             "Mapa de bits (raster)"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfQu\u00e9 formato gr\u00e1fico puede ampliarse sin perder resoluci\u00f3n?"
     },
     {
@@ -76,7 +76,7 @@
             "Radiaci\u00f3n electromagn\u00e9tica",
             "Ninguna de las opciones"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfEn qu\u00e9 categor\u00eda puede clasificarse la luz visible?"
     },
     {
@@ -89,7 +89,7 @@
             "6000\u00baK",
             "10000\u00baK"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfQu\u00e9 temperatura de color es m\u00e1s anaranjada de todas (en contraposici\u00f3n a la m\u00e1s azulada)?"
     },
     {
@@ -102,7 +102,7 @@
             "RGB",
             "RYB"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfCu\u00e1les son los colores primarios en la s\u00edntesis substractiva de color?"
     },
     {
@@ -115,7 +115,7 @@
             "RYB",
             "RGB"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfCu\u00e1les son los colores primarios en la s\u00edntesis aditiva de color?"
     },
     {
@@ -128,7 +128,7 @@
             "Fotograf\u00eda en papel",
             "Diapositiva"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfCu\u00e1l de estos elementos no puede ser considerado como original opaco?"
     },
     {
@@ -142,7 +142,7 @@
             "Fotolito",
             "Dibujo sobre granito"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfCu\u00e1l de estos elementos no puede ser considerado como original transparente?"
     },
     {
@@ -155,7 +155,7 @@
             "Un original opaco",
             "Ambas opciones son correctas"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Un original digital se produce a partir de..."
     },
     {
@@ -168,7 +168,7 @@
             "Diapositiva en color",
             "Dibujo en tonos de gris"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfCu\u00e1l de estos originales puede ser considerado como un original de l\u00ednea?"
     },
     {
@@ -181,7 +181,7 @@
             "Dibujo con trama",
             "Ambas opciones son correctas"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfCu\u00e1l de estos originales es de tono discontinuo?"
     },
     {
@@ -195,7 +195,7 @@
             "EPS (Encapsulated PostScript)",
             "PNG (Portable Network Graphics)"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Selecciona el formato que no permite almacenar im\u00e1genes vectoriales."
     },
     {
@@ -209,7 +209,7 @@
             "Utilizan la compresi\u00f3n JPEG",
             "Ocupan menos espacio que JPEG"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfQu\u00e9 tienen en com\u00fan los formatos de imagen BMP y RAW?"
     },
     {
@@ -222,7 +222,7 @@
             "JPEG",
             "RAW"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Se\u00f1ala el formato que no soporta la compresi\u00f3n con p\u00e9rdida"
     },
     {
@@ -235,7 +235,7 @@
             "Hay poca luz",
             "Ninguna de las respuestas"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Cuando el fot\u00f3metro de la c\u00e1mara marca 0 (el indicador est\u00e1 en el centro)..."
     },
     {
@@ -248,7 +248,7 @@
             "Hay poca luz",
             "Ninguna de las respuestas"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfQu\u00e9 pasa cuando el indicador del fot\u00f3metro de la c\u00e1mara est\u00e1 desplazado hacia la izquierda?"
     },
     {
@@ -261,7 +261,7 @@
             "Menos sensibilidad y m\u00e1s ruido",
             "Menos sensibilidad y menos ruido"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Si la ISO es mayor, hay..."
     },
     {
@@ -274,7 +274,7 @@
             "Menos luz",
             "La misma luz"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Si la sensibilidad es mayor, podemos hacer la misma fotograf\u00eda con..."
     },
     {
@@ -287,7 +287,7 @@
             "Igual de luminosa",
             "Menos luminosa"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Si el tiempo de exposici\u00f3n es menor, la fotograf\u00eda ser\u00e1..."
     },
     {
@@ -300,7 +300,7 @@
             "1",
             "1/8"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfQu\u00e9 exposici\u00f3n es m\u00e1s corta (menos tiempo)?"
     },
     {
@@ -313,7 +313,7 @@
             "Menos desenfocados",
             "Igual de desenfocados"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Si la profundidad de campo es mayor, los objetos que est\u00e1n demasiado cerca y demasiado lejos de la c\u00e1mara se ver\u00e1n..."
     },
     {
@@ -326,7 +326,7 @@
             "Igual",
             "Menor"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Cuando el n\u00famero f sea menor, la profundidad de campo ser\u00e1..."
     },
     {
@@ -339,7 +339,7 @@
             "donde se separan los rayos de luz",
             "una l\u00e1mpara direccional"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfQu\u00e9 es el foco de una lente?"
     },
     {
@@ -353,7 +353,7 @@
             "la correa de la pantalla",
             "el fot\u00f3metro del disparador"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "La distancia focal de un objetivo es la distancia que separa..."
     },
     {
@@ -367,7 +367,7 @@
             "D partido por F",
             "D multiplicado por F"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "\u00bfC\u00f3mo se calcula el n\u00famero f a partir de la distancia focal de la lente (F) y la abertura (D)?"
     },
     {
@@ -380,7 +380,7 @@
             "Menor",
             "Igual"
         ],
-        "tags": "Fotomec\u00e1nica",
+        "tags":  ["Fotomec\u00e1nica"],
         "text": "Cuando la distancia focal es mayor, el zoom es mayor y la profundidad de campo es..."
     }
 ]
