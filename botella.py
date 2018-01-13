@@ -156,7 +156,7 @@ def ask(question, answer=None):
         }
         for index, option in enumerate(question["options"])
     ]
-
+    print("DEBUG", question, flush=True, file=sys.stderr)
     if answer is not None:
         correct = answer == question["answer"][0]
         if "prepend" in question:
