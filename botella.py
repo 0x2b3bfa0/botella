@@ -18,7 +18,6 @@ import re
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 GITHUB_SECRET = bytes(os.environ['GITHUB_SECRET'], 'UTF-8')
-OWNERSHIP = os.environ['OWNERSHIP']
 
 app = Flask(__name__)
 slack_client = SlackClient(SLACK_BOT_TOKEN)
@@ -188,7 +187,7 @@ def git():
             return Response("{'msg': 'ignored'}", mimetype='application/json')
         try:
             cmd_output = subprocess.check_output(['git', 'pull'],)
-            cmd_output = subprocess.check_output(['chown', '-R', OWNERSHIP, '.'],)
+            cmd_output = subprocess.check_output(['chown', '-R', os.environ['OWNERSHIP'], '.'],)
             print(slack_client.api_call("chat.postMessage",
                                   channel="U7EEV8AMQ", # Helio Machado
                                   text="GitHub commit deployment successful.",
