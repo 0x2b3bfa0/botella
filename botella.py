@@ -158,18 +158,13 @@ def ask(question, answer=None):
     ]
     if answer is not None:
         correct = answer == question["answer"][0]
-        print("DEBUG", question, flush=True, file=sys.stderr)
         if "prepend" in question:
-            print("DEBUG", "YESS", flush=True, file=sys.stderr)
-
             right, wrong = question["prepend"]
         else:
-            print("DEBUG", "NOO", flush=True, file=sys.stderr)
-
             right, wrong = "Efectivamente", "No"
         for index, _ in enumerate(data["actions"]):
             data["actions"][index]["style"] = "primary" if index == question["answer"][0] else "danger"
-        data["fields"][0]["value"] = "{}, {}".format("Efectivamente" if correct else "No", question["answer"][1])
+        data["fields"][0]["value"] = "{}, {}".format(right if correct else wrong, question["answer"][1])
         data["color"] = "good" if correct else "danger"
 
     return [data]
