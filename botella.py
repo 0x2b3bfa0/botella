@@ -159,6 +159,8 @@ def ask(question, answer=None):
 
     if answer is not None:
         correct = answer == question["answer"][0]
+        print("DEBUG", question, flush=True, file=sys.stderr)
+
         if "prepend" in question:
             print("DEBUG", "YES", flush=True, file=sys.stderr)
             right, wrong = question["prepend"]
