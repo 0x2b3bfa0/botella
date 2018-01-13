@@ -310,7 +310,7 @@ def listening():
     if data["token"] != SLACK_VERIFICATION_TOKEN:
         return make_response("wrong token", 500)
     if data["event"]["type"] == "message":
-        threading.Thread(target=message, args=(data["event"])).start()
+        threading.Thread(target=message, args=[data["event"]]).start()
     return make_response("", 200)
 
 @app.route("/slack/interactive_data", methods=["POST"])
@@ -321,10 +321,12 @@ def interactive_data():
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
     data = json.loads(request.form["payload"])
+    index = int(data["callback_id"])
+    user = data["user"]["id"]
     if not user in counter:
         counter[user] = []
     if len(counter[user]) == index:
-        threading.Thread(target=answer_callback, args=(data)).start()
+        threading.Thread(target=answer_callback, args=[data]).start()
     return make_response("", 200)
 
 def watchdog():
