@@ -18,7 +18,7 @@ import re
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 GITHUB_SECRET = bytes(os.environ['GITHUB_SECRET'], 'UTF-8')
-OWNERSHIP = bytes(os.environ['OWNERSHIP'], 'UTF-8')
+OWNERSHIP = os.environ['OWNERSHIP']
 
 app = Flask(__name__)
 slack_client = SlackClient(SLACK_BOT_TOKEN)
