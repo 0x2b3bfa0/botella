@@ -18,6 +18,7 @@ import re
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_VERIFICATION_TOKEN = os.environ["SLACK_VERIFICATION_TOKEN"]
 GITHUB_SECRET = bytes(os.environ['GITHUB_SECRET'], 'UTF-8')
+OWNERSHIP = bytes(os.environ['OWNERSHIP'], 'UTF-8')
 
 app = Flask(__name__)
 slack_client = SlackClient(SLACK_BOT_TOKEN)
@@ -255,6 +256,7 @@ def add():
             assert type(data["value"]) is list
             assert len(data["value"]) == 2
             for value in data["value"]: assert type(value) is str
+            question["value"]=data["value"]
         questions += [question]
     except:
         return Response('{"error":true}')
