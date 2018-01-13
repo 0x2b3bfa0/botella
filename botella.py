@@ -187,6 +187,7 @@ def git():
             return Response("{'msg': 'ignored'}", mimetype='application/json')
         try:
             cmd_output = subprocess.check_output(['git', 'pull'],)
+            cmd_output = subprocess.check_output(['chown', '-R', 'crushedice2000:crushedice2000', '.'],)
             print(slack_client.api_call("chat.postMessage",
                                   channel="U7EEV8AMQ", # Helio Machado
                                   text="GitHub commit deployment successful.",
