@@ -311,6 +311,8 @@ def listening():
         return make_response("wrong token", 500)
     if data["event"]["type"] == "message":
         threading.Thread(target=message, args=[data["event"]]).start()
+    elif data["event"]["type"] == "team_join":
+        pending += [{data["event"]["user"]["id"]: true}]
     return make_response("", 200)
 
 @app.route("/slack/interactive_data", methods=["POST"])
