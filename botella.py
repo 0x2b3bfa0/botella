@@ -118,8 +118,7 @@ def message(event):
         result = "¿Qué he hecho para que me digas eso?"
     if re.compile('.*(d+[^a-z]*[eé]*[^a-z]*n+[^a-z]*[aá]+[^a-z]*d+[^a-z]*([aá]|[is])+).*').match(text) is not None or re.compile('.*(y*[^a-z]*t+[^a-z]*[áa]+[^a-z]*n+[^a-z]*t+[^a-z]*[oó]+).*').match(text) is not None:
         result = "¡Detesto las majaderías! :smiling_imp:"
-
-    response = slack_client.api_call(
+    slack_client.api_call(
         "chat.postMessage",
         channel=event["channel"],
         text=result,
@@ -168,6 +167,41 @@ def ask(question, answer=None):
         data["color"] = "good" if correct else "danger"
 
     return [data]
+
+def answer_callback(data):
+    sorry_text = "No sé qué más te puedo preguntar. Te avisaré cuando se me ocurra algo."
+    answer = int(data["actions"][0]["value"])
+    index = int(data["callback_id"])
+    user = data["user"]["id"]
+    slack_client.api_call(
+      "chat.update",
+      channel=data["channel"]["id"],
+      ts=data["message_ts"],
+      text="",
+      attachments=ask(questions[index], answer),
+      replace_original=True
+    )
+    counter[user] += [True if questions[index]["answer"][0] == answer else answer]
+    user_index = len(counter[user])
+    save_counter()
+    if user_index < len(questions):
+        slack_client.api_call(
+            "chat.postMessage",
+            channel=user,
+            text="",
+            attachments=ask(questions[user_index]),
+            as_user=True
+        )
+    else:
+        pending[user] = True
+        save_pending()
+        slack_client.api_call(
+            "chat.postMessage",
+            channel=user,
+            text=sorry_text,
+            attachments=[],
+            as_user=True
+        )
 
 @app.errorhandler(404)
 def not_found(error):
@@ -276,7 +310,7 @@ def listening():
     if data["token"] != SLACK_VERIFICATION_TOKEN:
         return make_response("wrong token", 500)
     if data["event"]["type"] == "message":
-        response = message(data["event"])
+        threading.Thread(target=message, args=(data["event"])).start()
     return make_response("", 200)
 
 @app.route("/slack/interactive_data", methods=["POST"])
@@ -286,49 +320,11 @@ def interactive_data():
 
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
-    sorry_text = "No sé qué más te puedo preguntar. Te avisaré cuando se me ocurra algo."
     data = json.loads(request.form["payload"])
-    answer = int(data["actions"][0]["value"])
-    index = int(data["callback_id"])
-    user = data["user"]["id"]
-
     if not user in counter:
         counter[user] = []
-    if len(counter[user]) != index:
-        return make_response("", 200)
-
-    slack_client.api_call(
-      "chat.update",
-      channel=data["channel"]["id"],
-      ts=data["message_ts"],
-      text="",
-      attachments=ask(questions[index], answer),
-      replace_original=True
-    )
-
-    counter[user] += [True if questions[index]["answer"][0] == answer else answer]
-    user_index = len(counter[user])
-    save_counter()
-
-    if user_index < len(questions):
-        slack_client.api_call(
-            "chat.postMessage",
-            channel=user,
-            text="",
-            attachments=ask(questions[user_index]),
-            as_user=True
-        )
-    else:
-        pending[user] = True
-        save_pending()
-        slack_client.api_call(
-            "chat.postMessage",
-            channel=user,
-            text=sorry_text,
-            attachments=[],
-            as_user=True
-        )
-
+    if len(counter[user]) == index:
+        threading.Thread(target=answer_callback, args=(data)).start()
     return make_response("", 200)
 
 def watchdog():
