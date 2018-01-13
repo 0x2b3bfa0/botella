@@ -290,7 +290,7 @@ def interactive():
         counter[user] = []
     if len(counter[user]) != index:
         return make_response("", 200)
-        print("DEBUG", questions[index], flush=True, file=sys.stderr)
+    print("DEBUG", questions[index], flush=True, file=sys.stderr)
 
     slack_client.api_call(
       "chat.update",
