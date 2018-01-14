@@ -212,11 +212,48 @@ def answer_callback(data):
             as_user=True
         )
 
+def watchdog():
+    global questions
+    global pending
+    load_pending()
+    load_counter()
+    for user in list(pending):
+        try:
+            index = len(counter[user])
+        except:
+            index = 0
+        if pending[user] and index < len(questions):
+            slack_client.api_call(
+                "chat.postMessage",
+                channel=user,
+                text="",
+                attachments=ask(questions[index]),
+                as_user=True
+            )
+            pending.pop(user, None)
+            save_pending()
+
 @app.errorhandler(404)
 def not_found(error):
     """Handbook-style narcissism ;-)"""
     return Response("""Designed and developed by Helio Machado <crushedice2000@gmail.com>
                        for the José María Cruz Novillo Arts School at Cuenca (Spain)""")
+
+@app.route("/api", methods=["GET", "POST"])
+def api():
+    """/api?method=<method> with JSON post arguments"""
+    return # So good to be true. Enabled only when testing. Keep trying!
+    try:
+        method = request.args.get('method')
+        if request.data:
+            data = json.loads(request.data)
+            response = slack_client.api_call(method, **data)
+        else:
+            response = slack_client.api_call(method)
+    except:
+        return Response('{"error": true}', mimetype='application/json')
+    else:
+        return Response(json.dumps(response), mimetype='application/json')
 
 @app.route("/git", methods=["POST"])
 def git():
@@ -249,21 +286,6 @@ def git():
         else:
             return json.dumps({'msg': 'nothing to commit'})
 
-@app.route("/api", methods=["GET", "POST"])
-def api():
-    """/api?method=users.list with post arguments"""
-    pass # Well, I need this for testing, but I won't leave this enabled carelessly. ;-)
-    try:
-        method = request.args.get('method')
-        if request.data:
-            data = json.loads(request.data)
-            response = slack_client.api_call(method, **data)
-        else:
-            response = slack_client.api_call(method)
-    except:
-        return Response('{"error": true}')
-    else:
-        return Response(json.dumps(response), mimetype='application/json')
 
 @app.route("/get", methods=["GET"])
 def get():
@@ -328,42 +350,16 @@ def listening():
         save_pending()
     return make_response("", 200)
 
-@app.route("/slack/interactive_data", methods=["POST"])
-def interactive_data():
-    # data = json.loads(request.form["payload"])
-    return Response("[]", mimetype='application/json')
-
 @app.route("/slack/interactive", methods=["POST"])
 def interactive():
     data = json.loads(request.form["payload"])
     threading.Thread(target=answer_callback, args=[data]).start()
     return make_response("", 200)
 
-def watchdog():
-    global questions
-    global pending
-    load_pending()
-    load_counter()
-    for user in list(pending):
-        try:
-            index = len(counter[user])
-        except:
-            index = 0
-        if pending[user] and index < len(questions):
-            slack_client.api_call(
-                "chat.postMessage",
-                channel=user,
-                text="",
-                attachments=ask(questions[index]),
-                as_user=True
-            )
-            pending.pop(user, None)
-            save_pending()
-
-
-parse_files()
-schedule.every(10).seconds.do(watchdog)
-schedule.run_continuously()
 
 if __name__ == "__main__":
+    schedule.every(10).seconds.do(watchdog)
+    schedule.run_continuously()
+    parse_files()
+
     app.run(host='0.0.0.0', port=5050)
