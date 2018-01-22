@@ -222,6 +222,7 @@ def watchdog():
             index = len(counter[user])
         except:
             index = 0
+        print(user, index, len(questions), flush=True, file=sys.stderr)
         if pending[user] and index < len(questions):
             slack_client.api_call(
                 "chat.postMessage",
