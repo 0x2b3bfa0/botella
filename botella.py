@@ -101,6 +101,8 @@ def message(event):
         answer = "Lo siento, no sé cómo responderte. Si lo que me has preguntado es tan obvio, prueba a quejarte a mi creador (<@U7EEV8AMQ>) para que me enseñe a contestarlo."
     if re.compile('.*te[^a-z]*llamas.*').match(text) is not None or re.compile('.*tu[^a-z]*nombre.*').match(text) is not None or re.compile('.*(qu|k)i[eé]n[^a-zA-Z]+eres.*').match(text) is not None:
         answer = "Me llamo <@botella>. Lo peor de todo es que ya lo sabías."
+    if re.compile('¿?.*tutora.*\?[^a-zA-Z]*').match(text) is not None:
+        answer = "La tutora es muchísimo más inteligente que yo, así que mejor pregúntale a ella. Es muy amable y puede atenderte los miércoles desde las 17:15 hasta las 18:10, o incluso al finalizar su clase."
     if re.compile('.*(edad|años)[^a-z]*tienes.*').match(text) is not None or re.compile('.*tienes.*(edad|años).*[?].*').match(text) is not None:
         answer = "No sé. Pregúntale al que me programó."
     if re.compile('.*[^a-z]*(notas?|punt(os|ua((da|do)|(ci[oó]n))))[^a-z]*').match(text) is not None:
