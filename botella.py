@@ -96,7 +96,7 @@ def message(event):
         name = slack_client.api_call("users.info", user=event["user"])["user"]["real_name"]
         answer = "¡Hola, {} (ponle el diminutivo más ridículo y ñoño que conozcas)!".format(name)
     if re.compile('(.*(piensas|dime|cuéntame|opinar|pensar).*|.*[?][^a-z]*)').match(text) is not None:
-        answer = "Aún no sé pensar ni responder preguntas de forma libre, pero me gustaría aprender. :smile: Si quieres enseñarme... sólo te hace falta saber un poquito de <https://www.python.org|Python>, <https://www.tensorflow.org|TensorFlow> y <https://spacy.io|spaCy>. Puedes encontrar <https://github.com/crushedice2000/botella|mi código> en GitHub."
+        answer = "Aún no sé pensar ni responder preguntas de forma libre, pero me gustaría aprender. :smile: Si quieres enseñarme... sólo te hace falta saber un poquito de <https://www.python.org|Python>, <https://www.tensorflow.org|TensorFlow> y <https://spacy.io|spaCy>. Puedes encontrar <https://github.com/0x2b3bfa0/botella|mi código> en GitHub."
     if re.compile('.*[^a-z]*(qu[ée]|[c[óo]m[óo]|[c[úu][áa]ndo|[d[óo]nd[ée]|q[uú][eé]|[c[uú][áa]l|qu[íi][eé]n|[c[uú][aá]nto).*').match(text) is not None:
         answer = "Lo siento, no sé cómo responderte. Si lo que me has preguntado es tan obvio, prueba a quejarte a mi creador (<@U7EEV8AMQ>) para que me enseñe a contestarlo."
     if re.compile('.*te[^a-z]*llamas.*').match(text) is not None or re.compile('.*tu[^a-z]*nombre.*').match(text) is not None or re.compile('.*(qu|k)i[eé]n[^a-zA-Z]+eres.*').match(text) is not None:
@@ -239,7 +239,7 @@ def watchdog():
 @app.errorhandler(404)
 def not_found(error):
     """Handbook-style narcissism ;-)"""
-    return Response("""Designed and developed by Helio Machado <crushedice2000@gmail.com>
+    return Response("""Designed and developed by Helio Machado <0x2b3bfa0>
                        for the José María Cruz Novillo Arts School at Cuenca (Spain)""")
 
 @app.route("/api", methods=["GET", "POST"])
